@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Calculator, TrendingUp, Sparkles, ArrowRight, Leaf, Download, Info } from "lucide-react";
+import { SECTION_IDS } from '@/lib/site-routes';
+import { SectionLink } from '@/components/site/section-link';
 import { Container, Eyebrow } from "./container";
 
 const crops = [
@@ -216,13 +218,13 @@ export function RoiCalculator() {
                   </div>
                 </div>
                 <div className="hidden shrink-0 flex-col items-end gap-2 sm:flex">
-                  <a
-                    href="#contact"
+                  <SectionLink
+                    section={SECTION_IDS.contact}
                     className="group inline-flex items-center gap-1.5 rounded-full bg-amber-brand px-4 py-2.5 text-sm font-semibold text-leaf-900 transition-all hover:brightness-105"
                   >
                     Talk to us
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-                  </a>
+                  </SectionLink>
                   <button
                     type="button"
                     onClick={downloadSummary}

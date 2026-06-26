@@ -5,3 +5,5 @@ export {
   POSTS_QUERY,
   RELATED_POSTS_QUERY,
 } from '@/sanity/queries/blog';
+
+export { SITE_SETTINGS_QUERY } from '@/sanity/queries/site-settings';

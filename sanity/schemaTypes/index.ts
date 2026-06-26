@@ -5,6 +5,7 @@ import { post } from '@/sanity/schemaTypes/documents/post';
 import { siteSettings } from '@/sanity/schemaTypes/documents/siteSettings';
 import { blockContent } from '@/sanity/schemaTypes/objects/blockContent';
 import { seo } from '@/sanity/schemaTypes/objects/seo';
+import { socialLink } from '@/sanity/schemaTypes/objects/socialLink';
 
 /**
  * Schema registry — add new document/object types here.
@@ -21,4 +22,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   // Objects
   blockContent,
   seo,
+  socialLink,
 ];

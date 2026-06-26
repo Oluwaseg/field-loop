@@ -27,7 +27,7 @@ export function BlogPostHero({ post, imageUrl, readingTime }: BlogPostHeroProps)
         </Link>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className='mt-6 max-w-4xl'
@@ -74,7 +74,7 @@ export function BlogPostHero({ post, imageUrl, readingTime }: BlogPostHeroProps)
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
+          initial={false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           className='mt-10 overflow-hidden rounded-3xl border border-border ring-soft'

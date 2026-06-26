@@ -2,6 +2,9 @@ import heroImg from '@/assets/hero-farm.jpg';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, Sparkles } from 'lucide-react';
 
+import { SECTION_IDS } from '@/lib/site-routes';
+import { SectionLink } from '@/components/site/section-link';
+
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: (i: number = 0) => ({
@@ -73,19 +76,19 @@ export function Hero() {
             custom={3}
             className='mt-9 flex flex-wrap items-center gap-3'
           >
-            <a
-              href='#solutions'
+            <SectionLink
+              section={SECTION_IDS.solutions}
               className='group inline-flex items-center gap-2 rounded-full bg-leaf-900 px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-12px_oklch(0.4_0.15_150/0.6)] transition-all hover:bg-leaf-700'
             >
               Explore our solutions
               <ArrowRight className='size-4 transition-transform group-hover:translate-x-0.5' />
-            </a>
-            <a
-              href='#about'
+            </SectionLink>
+            <SectionLink
+              section={SECTION_IDS.about}
               className='inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-leaf-500 hover:text-leaf-700'
             >
               Our story
-            </a>
+            </SectionLink>
           </motion.div>
 
           <motion.dl

@@ -1,3 +1,4 @@
+import type { Viewport } from 'next';
 import { CookieConsent } from '@/components/site/cookie-consent';
 import type { Metadata } from 'next';
 import { Fraunces, Geist } from 'next/font/google';
@@ -85,7 +86,9 @@ export const metadata: Metadata = {
     description: 'IoT, drones and smart storage for Nigerian farmers.',
     images: ['/og-image.jpg'],
   },
+};
 
+export const viewport: Viewport = {
   themeColor: '#1f4a2f',
 };
 
@@ -97,6 +100,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
+      data-scroll-behavior='smooth'
       className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className='min-h-full flex flex-col'>

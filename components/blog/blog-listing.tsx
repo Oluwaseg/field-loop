@@ -63,7 +63,7 @@ export function BlogListing({ posts, categories }: BlogListingProps) {
       <section className='relative overflow-hidden pt-32 pb-16 grain-bg'>
         <div className='container-x mx-auto max-w-[1200px]'>
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className='max-w-3xl'
@@ -178,7 +178,7 @@ export function BlogListing({ posts, categories }: BlogListingProps) {
             {rest.map((post, index) => (
               <motion.div
                 key={post._id}
-                initial={{ opacity: 0, y: 18 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}

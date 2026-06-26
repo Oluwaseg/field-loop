@@ -1,21 +1,20 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowUpRight, Menu, Sprout, X } from 'lucide-react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const links = [
-  { href: '#about', label: 'About' },
-  { href: '#solutions', label: 'Solutions' },
-  { href: '#impact', label: 'Impact' },
-  { href: '#stories', label: 'Stories' },
-  { href: '#roi', label: 'ROI' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#team', label: 'Team' },
-  { href: '/blog', label: 'Blog' },
-];
+import { NAV_LINKS } from '@/lib/site-routes';
+import { HomeLink, SectionLink } from '@/components/site/section-link';
+import { SiteLogoMark, SiteLogoText } from '@/components/site/site-logo';
 
-export function Navbar() {
+type NavbarProps = {
+  companyName?: string;
+  logoUrl?: string;
+};
+
+export function Navbar({ companyName = 'FieldLoop', logoUrl }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -35,37 +34,39 @@ export function Navbar() {
             : 'border-transparent bg-background/40 backdrop-blur-md'
         }`}
       >
-        <a
-          href='#top'
-          className='flex items-center gap-2 text-base font-semibold tracking-tight text-foreground'
-        >
-          <span className='grid size-8 place-items-center rounded-full bg-leaf-700 text-primary-foreground'>
-            <Sprout className='size-4' strokeWidth={2.4} />
-          </span>
-          Field<span className='text-leaf-700'>Loop</span>
-        </a>
+        <HomeLink className='flex items-center gap-2 text-base font-semibold tracking-tight text-foreground'>
+          <SiteLogoMark logoUrl={logoUrl} companyName={companyName} />
+          <SiteLogoText companyName={companyName} />
+        </HomeLink>
 
         <nav className='hidden items-center gap-1 md:flex'>
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
+          {NAV_LINKS.map((link) => (
+            <SectionLink
+              key={link.section}
+              section={link.section}
               className='rounded-full px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-leaf-50 hover:text-leaf-900'
             >
-              {l.label}
-            </a>
+              {link.label}
+            </SectionLink>
           ))}
+          <Link
+            href='/blog'
+            className='rounded-full px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-leaf-50 hover:text-leaf-900'
+          >
+            Blog
+          </Link>
         </nav>
 
         <div className='flex items-center gap-2'>
-          <a
-            href='#contact'
+          <SectionLink
+            section='contact'
             className='group hidden items-center gap-1.5 rounded-full bg-leaf-900 px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:bg-leaf-700 sm:inline-flex'
           >
             Get in touch
             <ArrowUpRight className='size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
-          </a>
+          </SectionLink>
           <button
+            type='button'
             aria-label='Toggle menu'
             onClick={() => setOpen((v) => !v)}
             className='grid size-10 place-items-center rounded-full border border-border bg-card text-foreground md:hidden'
@@ -85,23 +86,30 @@ export function Navbar() {
             className='mx-auto mt-2 w-[min(1200px,calc(100%-1.25rem))] overflow-hidden rounded-3xl border border-border bg-card p-3 shadow-xl md:hidden'
           >
             <nav className='grid'>
-              {links.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className='rounded-2xl px-4 py-3 text-sm font-medium text-foreground hover:bg-leaf-50'
+              {NAV_LINKS.map((link) => (
+                <SectionLink
+                  key={link.section}
+                  section={link.section}
+                  onNavigate={() => setOpen(false)}
+                  className='rounded-2xl px-4 py-3 text-left text-sm font-medium text-foreground hover:bg-leaf-50'
                 >
-                  {l.label}
-                </a>
+                  {link.label}
+                </SectionLink>
               ))}
-              <a
-                href='#contact'
+              <Link
+                href='/blog'
                 onClick={() => setOpen(false)}
+                className='rounded-2xl px-4 py-3 text-sm font-medium text-foreground hover:bg-leaf-50'
+              >
+                Blog
+              </Link>
+              <SectionLink
+                section='contact'
+                onNavigate={() => setOpen(false)}
                 className='mt-1 inline-flex items-center justify-between rounded-2xl bg-leaf-900 px-4 py-3 text-sm font-semibold text-primary-foreground'
               >
                 Get in touch <ArrowUpRight className='size-4' />
-              </a>
+              </SectionLink>
             </nav>
           </motion.div>
         )}

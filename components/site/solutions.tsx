@@ -1,3 +1,5 @@
+import { SECTION_IDS } from '@/lib/site-routes';
+import { SectionLink } from '@/components/site/section-link';
 import analyticsImg from '@/assets/sol-analytics.jpg';
 import droneImg from '@/assets/sol-drone.jpg';
 import iotImg from '@/assets/sol-iot.jpg';
@@ -108,13 +110,13 @@ export function Solutions() {
                   </div>
                 ))}
               </dl>
-              <a
-                href='#contact'
+              <SectionLink
+                section={SECTION_IDS.contact}
                 className='group inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-leaf-700'
               >
                 Request a demo
                 <ArrowUpRight className='size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
-              </a>
+              </SectionLink>
             </div>
           </div>
         </motion.article>
@@ -147,13 +149,13 @@ export function Solutions() {
                 <p className='text-sm leading-relaxed text-muted-foreground'>
                   {s.body}
                 </p>
-                <a
-                  href='#contact'
+                <SectionLink
+                  section={SECTION_IDS.contact}
                   className='mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-leaf-700'
                 >
                   Learn more{' '}
                   <ArrowUpRight className='size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
-                </a>
+                </SectionLink>
               </div>
             </motion.article>
           ))}

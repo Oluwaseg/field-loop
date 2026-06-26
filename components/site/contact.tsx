@@ -3,11 +3,16 @@
 import { ArrowRight, Check, Loader2, Mail, MapPin, Phone } from 'lucide-react';
 import { useState } from 'react';
 
+import type { SiteSettings } from '@/sanity/types/site-settings';
 import { Container } from './container';
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
-export function Contact() {
+type ContactProps = {
+  settings: Pick<SiteSettings, 'address' | 'phone' | 'email'>;
+};
+
+export function Contact({ settings }: ContactProps) {
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState('');
 
@@ -87,38 +92,33 @@ export function Contact() {
 
               <ul className='mt-10 space-y-5 text-sm'>
                 {[
-                  {
+                  settings.address && {
                     Icon: MapPin,
                     h: 'Location',
-                    body: 'Lateef Kayode Jakande Gardens, NYSC Bus-Stop, Lasu-Isheri Rd, Igando, Lagos.',
+                    body: settings.address,
                   },
-                  {
-                    Icon: Phone,
-                    h: 'Phone',
-                    body: '+234 704 362 9561\n+234 907 100 8244',
-                  },
-                  {
-                    Icon: Mail,
-                    h: 'Email',
-                    body: 'hello@fieldloop.org',
-                  },
-                ].map(({ Icon, h, body }) => (
-                  <li key={h} className='flex gap-4'>
-                    <span className='grid size-10 shrink-0 place-items-center rounded-xl bg-white/10 text-amber-brand'>
-                      <Icon className='size-4' />
-                    </span>
-
-                    <div>
-                      <div className='text-xs font-semibold uppercase tracking-wider text-white/60'>
-                        {h}
+                  settings.phone && { Icon: Phone, h: 'Phone', body: settings.phone },
+                  settings.email && { Icon: Mail, h: 'Email', body: settings.email },
+                ]
+                  .filter(
+                    (
+                      item,
+                    ): item is { Icon: typeof MapPin; h: string; body: string } =>
+                      Boolean(item),
+                  )
+                  .map(({ Icon, h, body }) => (
+                    <li key={h} className='flex gap-4'>
+                      <span className='grid size-10 shrink-0 place-items-center rounded-xl bg-white/10 text-amber-brand'>
+                        <Icon className='size-4' />
+                      </span>
+                      <div>
+                        <div className='text-xs font-semibold uppercase tracking-wider text-white/60'>
+                          {h}
+                        </div>
+                        <p className='mt-1 whitespace-pre-line text-white/85'>{body}</p>
                       </div>
-
-                      <p className='mt-1 whitespace-pre-line text-white/85'>
-                        {body}
-                      </p>
-                    </div>
-                  </li>
-                ))}
+                    </li>
+                  ))}
               </ul>
             </div>
 

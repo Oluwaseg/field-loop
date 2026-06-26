@@ -1,3 +1,5 @@
+import { SECTION_IDS } from '@/lib/site-routes';
+import { SectionLink } from '@/components/site/section-link';
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { Container, Eyebrow } from "./container";
@@ -48,12 +50,12 @@ export function FAQ() {
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
               Six questions farmers ask us most about the calculator, the assumptions behind it, and what real returns look like in the first year.
             </p>
-            <a
-              href="#contact"
+            <SectionLink
+              section={SECTION_IDS.contact}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-leaf-700 px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-leaf-900"
             >
               Still curious? Talk to us
-            </a>
+            </SectionLink>
           </div>
 
           <motion.div

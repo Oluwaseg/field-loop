@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { ArrowUpRight } from 'lucide-react';
 
+import { BlogPostCta } from '@/components/blog/blog-post-cta';
 import { BlogPostHero } from '@/components/blog/blog-post-hero';
 import { formatBlogDate, estimateReadingTime } from '@/lib/blog-utils';
 import { PortableTextRenderer } from '@/sanity/components/portable-text';
@@ -140,20 +141,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <p className='mt-3 text-sm text-primary-foreground/80'>
             Run our free ROI calculator or talk to the team — usually a 24 hour reply.
           </p>
-          <div className='mt-6 flex flex-wrap justify-center gap-3'>
-            <a
-              href='/#roi'
-              className='inline-flex items-center gap-1.5 rounded-full bg-amber-brand px-5 py-2.5 text-sm font-medium text-leaf-900 hover:opacity-90'
-            >
-              Try the ROI calculator <ArrowUpRight className='size-4' />
-            </a>
-            <a
-              href='/#contact'
-              className='inline-flex items-center gap-1.5 rounded-full border border-primary-foreground/30 px-5 py-2.5 text-sm font-medium hover:bg-primary-foreground/10'
-            >
-              Get in touch
-            </a>
-          </div>
+          <BlogPostCta />
         </div>
       </section>
 
