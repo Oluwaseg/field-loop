@@ -5,9 +5,9 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { NAV_LINKS } from '@/lib/site-routes';
 import { HomeLink, SectionLink } from '@/components/site/section-link';
 import { SiteLogoMark, SiteLogoText } from '@/components/site/site-logo';
+import { NAV_LINKS } from '@/lib/site-routes';
 
 type NavbarProps = {
   companyName?: string;
@@ -44,14 +44,14 @@ export function Navbar({ companyName = 'FieldLoop', logoUrl }: NavbarProps) {
             <SectionLink
               key={link.section}
               section={link.section}
-              className='rounded-full px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-leaf-50 hover:text-leaf-900'
+              className='rounded-full px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-leaf-50 hover:text-leaf-900 cursor-pointer'
             >
               {link.label}
             </SectionLink>
           ))}
           <Link
             href='/blog'
-            className='rounded-full px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-leaf-50 hover:text-leaf-900'
+            className='rounded-full px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-leaf-50 hover:text-leaf-900 cursor-pointer'
           >
             Blog
           </Link>
@@ -60,7 +60,7 @@ export function Navbar({ companyName = 'FieldLoop', logoUrl }: NavbarProps) {
         <div className='flex items-center gap-2'>
           <SectionLink
             section='contact'
-            className='group hidden items-center gap-1.5 rounded-full bg-leaf-900 px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:bg-leaf-700 sm:inline-flex'
+            className='group hidden items-center gap-1.5 rounded-full bg-leaf-900 px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:bg-leaf-700 sm:inline-flex cursor-pointer'
           >
             Get in touch
             <ArrowUpRight className='size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
@@ -91,7 +91,7 @@ export function Navbar({ companyName = 'FieldLoop', logoUrl }: NavbarProps) {
                   key={link.section}
                   section={link.section}
                   onNavigate={() => setOpen(false)}
-                  className='rounded-2xl px-4 py-3 text-left text-sm font-medium text-foreground hover:bg-leaf-50'
+                  className='rounded-2xl px-4 py-3 text-left text-sm font-medium text-foreground hover:bg-leaf-50 cursor-pointer'
                 >
                   {link.label}
                 </SectionLink>
@@ -99,14 +99,14 @@ export function Navbar({ companyName = 'FieldLoop', logoUrl }: NavbarProps) {
               <Link
                 href='/blog'
                 onClick={() => setOpen(false)}
-                className='rounded-2xl px-4 py-3 text-sm font-medium text-foreground hover:bg-leaf-50'
+                className='rounded-2xl px-4 py-3 text-sm font-medium text-foreground hover:bg-leaf-50 cursor-pointer'
               >
                 Blog
               </Link>
               <SectionLink
                 section='contact'
                 onNavigate={() => setOpen(false)}
-                className='mt-1 inline-flex items-center justify-between rounded-2xl bg-leaf-900 px-4 py-3 text-sm font-semibold text-primary-foreground'
+                className='mt-1 inline-flex items-center justify-between rounded-2xl bg-leaf-900 px-4 py-3 text-sm font-semibold text-primary-foreground cursor-pointer'
               >
                 Get in touch <ArrowUpRight className='size-4' />
               </SectionLink>
