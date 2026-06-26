@@ -19,8 +19,13 @@ export type PostListItem = {
   slug: string;
   excerpt: string;
   publishedAt: string;
+  category: string;
   featuredImage: SanityImage;
   author?: PostAuthor;
+};
+
+export type PostListItemWithReadingTime = PostListItem & {
+  readingTime: number;
 };
 
 export type PostDetail = PostListItem & {

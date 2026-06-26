@@ -45,6 +45,24 @@ export const post = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      group: 'content',
+      options: {
+        list: [
+          { title: 'Storage', value: 'Storage' },
+          { title: 'Drones', value: 'Drones' },
+          { title: 'IoT', value: 'IoT' },
+          { title: 'AI', value: 'AI' },
+          { title: 'Stories', value: 'Stories' },
+          { title: 'Climate', value: 'Climate' },
+        ],
+        layout: 'dropdown',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'featuredImage',
       title: 'Featured image',
       type: 'image',

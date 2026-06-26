@@ -1,15 +1,15 @@
 import type { Metadata } from 'next';
 
-import { BlogHeader } from '@/components/blog/blog-header';
+import { Navbar } from '@/components/site/navbar';
 import { Footer } from '@/components/site/footer';
 
 export const metadata: Metadata = {
-  title: 'Blog',
-  description:
-    'Insights on agritech, IoT farming, post-harvest innovation, and sustainable agriculture in Nigeria.',
-  alternates: {
-    canonical: '/blog',
+  title: {
+    default: 'Field Notes',
+    template: '%s | FieldLoop',
   },
+  description:
+    'Stories, data, and field notes from FieldLoop on smart storage, IoT, drones, and AI for Nigerian agriculture.',
 };
 
 export default function BlogLayout({
@@ -18,10 +18,10 @@ export default function BlogLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <BlogHeader />
-      <main className='flex-1'>{children}</main>
+    <div className='min-h-screen bg-background'>
+      <Navbar />
+      <main>{children}</main>
       <Footer />
-    </>
+    </div>
   );
 }

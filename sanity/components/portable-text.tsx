@@ -10,34 +10,37 @@ import type { SanityImage } from '@/sanity/types';
 const components: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
-      <h2 className='mt-10 font-heading text-3xl font-semibold tracking-tight text-foreground first:mt-0'>
+      <h2 className='mt-12 text-3xl font-display tracking-tight text-foreground first:mt-0'>
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className='mt-8 font-heading text-2xl font-semibold tracking-tight text-foreground'>
-        {children}
-      </h3>
+      <h3 className='mt-10 text-2xl font-display tracking-tight text-foreground'>{children}</h3>
     ),
     h4: ({ children }) => (
-      <h4 className='mt-6 text-xl font-semibold text-foreground'>{children}</h4>
+      <h4 className='mt-8 text-xl font-semibold text-foreground'>{children}</h4>
     ),
     normal: ({ children }) => (
-      <p className='mt-4 text-base leading-relaxed text-muted-foreground'>{children}</p>
+      <p className='text-lg leading-relaxed text-foreground/85'>{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className='mt-6 border-l-4 border-leaf-500 pl-4 text-lg italic text-foreground'>
+      <blockquote className='relative my-10 rounded-2xl border-l-4 border-leaf-700 bg-leaf-50/60 p-7 text-xl font-display italic text-leaf-900'>
         {children}
       </blockquote>
     ),
   },
   list: {
+    bullet: ({ children }) => <ul className='space-y-3'>{children}</ul>,
+    number: ({ children }) => <ol className='list-decimal space-y-3 pl-6'>{children}</ol>,
+  },
+  listItem: {
     bullet: ({ children }) => (
-      <ul className='mt-4 list-disc space-y-2 pl-6 text-muted-foreground'>{children}</ul>
+      <li className='flex gap-3 text-lg text-foreground/85'>
+        <span className='mt-3 inline-block size-1.5 shrink-0 rounded-full bg-leaf-700' />
+        <span>{children}</span>
+      </li>
     ),
-    number: ({ children }) => (
-      <ol className='mt-4 list-decimal space-y-2 pl-6 text-muted-foreground'>{children}</ol>
-    ),
+    number: ({ children }) => <li className='text-lg text-foreground/85'>{children}</li>,
   },
   marks: {
     strong: ({ children }) => <strong className='font-semibold text-foreground'>{children}</strong>,
@@ -82,7 +85,7 @@ const components: PortableTextComponents = {
       const imageUrl = urlFor(image).width(1200).auto('format').url();
 
       return (
-        <figure className='my-8 overflow-hidden rounded-2xl border border-border bg-card'>
+        <figure className='my-10 overflow-hidden rounded-2xl border border-border bg-card'>
           <Image
             src={imageUrl}
             alt={image.alt || ''}

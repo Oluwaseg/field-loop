@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sprout, ArrowUpRight } from "lucide-react";
