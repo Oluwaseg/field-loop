@@ -1,0 +1,110 @@
+import type { PortableTextComponents } from '@portabletext/react';
+import { PortableText } from '@portabletext/react';
+import type { PortableTextBlock } from '@portabletext/types';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { urlFor } from '@/sanity/lib/image';
+import type { SanityImage } from '@/sanity/types';
+
+const components: PortableTextComponents = {
+  block: {
+    h2: ({ children }) => (
+      <h2 className='mt-10 font-heading text-3xl font-semibold tracking-tight text-foreground first:mt-0'>
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className='mt-8 font-heading text-2xl font-semibold tracking-tight text-foreground'>
+        {children}
+      </h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className='mt-6 text-xl font-semibold text-foreground'>{children}</h4>
+    ),
+    normal: ({ children }) => (
+      <p className='mt-4 text-base leading-relaxed text-muted-foreground'>{children}</p>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className='mt-6 border-l-4 border-leaf-500 pl-4 text-lg italic text-foreground'>
+        {children}
+      </blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => (
+      <ul className='mt-4 list-disc space-y-2 pl-6 text-muted-foreground'>{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className='mt-4 list-decimal space-y-2 pl-6 text-muted-foreground'>{children}</ol>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => <strong className='font-semibold text-foreground'>{children}</strong>,
+    em: ({ children }) => <em>{children}</em>,
+    code: ({ children }) => (
+      <code className='rounded bg-leaf-50 px-1.5 py-0.5 font-mono text-sm text-leaf-900'>
+        {children}
+      </code>
+    ),
+    link: ({ children, value }) => {
+      const href = value?.href || '#';
+      const isExternal = href.startsWith('http');
+
+      if (isExternal) {
+        return (
+          <a
+            href={href}
+            className='font-medium text-leaf-700 underline underline-offset-4 hover:text-leaf-900'
+            target={value?.openInNewTab ? '_blank' : undefined}
+            rel={value?.openInNewTab ? 'noreferrer noopener' : undefined}
+          >
+            {children}
+          </a>
+        );
+      }
+
+      return (
+        <Link
+          href={href}
+          className='font-medium text-leaf-700 underline underline-offset-4 hover:text-leaf-900'
+        >
+          {children}
+        </Link>
+      );
+    },
+  },
+  types: {
+    image: ({ value }) => {
+      const image = value as SanityImage;
+      if (!image?.asset) return null;
+
+      const imageUrl = urlFor(image).width(1200).auto('format').url();
+
+      return (
+        <figure className='my-8 overflow-hidden rounded-2xl border border-border bg-card'>
+          <Image
+            src={imageUrl}
+            alt={image.alt || ''}
+            width={1200}
+            height={675}
+            className='h-auto w-full object-cover'
+          />
+          {image.caption ? (
+            <figcaption className='px-4 py-3 text-sm text-muted-foreground'>
+              {image.caption}
+            </figcaption>
+          ) : null}
+        </figure>
+      );
+    },
+  },
+};
+
+type PortableTextRendererProps = {
+  value: PortableTextBlock[];
+};
+
+export function PortableTextRenderer({ value }: PortableTextRendererProps) {
+  return <PortableText value={value} components={components} />;
+}

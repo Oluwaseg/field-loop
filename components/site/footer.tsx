@@ -83,7 +83,7 @@ export function Footer() {
                 {c.links.map((l) => (
                   <li key={l}>
                     <a
-                      href='#'
+                      href={l === 'Blog' ? '/blog' : '#'}
                       className='text-white/70 transition-colors hover:text-white'
                     >
                       {l}
