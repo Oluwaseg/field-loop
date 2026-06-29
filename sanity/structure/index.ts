@@ -15,13 +15,14 @@ export const structure: StructureResolver = (S) =>
           S.document()
             .schemaType('siteSettings')
             .documentId('siteSettings')
-            .title('Site Settings'),
+            .title('Site Settings')
         ),
 
       S.divider(),
 
       S.documentTypeListItem('post').title('Blog Posts'),
       S.documentTypeListItem('person').title('People'),
+      S.documentTypeListItem('teamMember').title('Team Members'),
 
       // Future sections:
       // S.documentTypeListItem('service').title('Services'),

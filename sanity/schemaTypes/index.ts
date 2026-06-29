@@ -3,6 +3,7 @@ import type { SchemaTypeDefinition } from 'sanity';
 import { person } from '@/sanity/schemaTypes/documents/person';
 import { post } from '@/sanity/schemaTypes/documents/post';
 import { siteSettings } from '@/sanity/schemaTypes/documents/siteSettings';
+import { teamMember } from '@/sanity/schemaTypes/documents/teamMember';
 import { blockContent } from '@/sanity/schemaTypes/objects/blockContent';
 import { seo } from '@/sanity/schemaTypes/objects/seo';
 import { socialLink } from '@/sanity/schemaTypes/objects/socialLink';
@@ -17,6 +18,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   // Documents
   post,
   person,
+  teamMember,
   siteSettings,
 
   // Objects

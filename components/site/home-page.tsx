@@ -6,8 +6,8 @@ import { About } from '@/components/site/about';
 import { Contact } from '@/components/site/contact';
 import { FAQ, roiFaqs } from '@/components/site/faq';
 import { Hero } from '@/components/site/hero';
-import { Impact } from '@/components/site/impact';
 import { HomeScrollHandler } from '@/components/site/home-scroll-handler';
+import { Impact } from '@/components/site/impact';
 import { Navbar } from '@/components/site/navbar';
 import { RoiCalculator } from '@/components/site/roi-calculator';
 import { Solutions } from '@/components/site/solutions';
@@ -16,12 +16,14 @@ import { Stories } from '@/components/site/stories';
 import { Team } from '@/components/site/team';
 import { Ticker } from '@/components/site/ticker';
 import type { SiteSettings } from '@/sanity/types/site-settings';
+import type { TeamMember } from '@/sanity/types/team';
 
 type HomePageProps = {
   settings: SiteSettings;
+  teamMembers: TeamMember[];
 };
 
-export function HomePage({ settings }: HomePageProps) {
+export function HomePage({ settings, teamMembers }: HomePageProps) {
   return (
     <>
       <Script
@@ -81,7 +83,7 @@ export function HomePage({ settings }: HomePageProps) {
       <Solutions />
       <Impact />
       <Stories />
-      <Team />
+      <Team team={teamMembers} />
       <RoiCalculator />
       <FAQ />
       <Contact

@@ -6,4 +6,10 @@ export type {
   SanityImage,
 } from '@/sanity/types/blog';
 
-export type { SiteSettings, SocialLink, SocialIcon } from '@/sanity/types/site-settings';
+export type { TeamMember } from '@/sanity/types/team';
+
+export type {
+  SiteSettings,
+  SocialIcon,
+  SocialLink,
+} from '@/sanity/types/site-settings';
